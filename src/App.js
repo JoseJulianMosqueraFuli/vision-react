@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import analyzeImage from './azure-image-analysis'; // Importa la función de análisis de imágenes
+import analyzeImage from './azure-image-analysis';
 
 function App() {
   const [url, setUrl] = useState('');
@@ -26,22 +26,20 @@ function App() {
   };
 
   const handleGenerateClick = () => {
-    // Lógica para ejecutar la acción con la URL
     console.log(`Generando acción con la URL: ${url}`);
   };
 
   const DisplayResults = () => {
     if (loading) {
-      return <p>Cargando...</p>;
+      return <p>Loading...</p>;
     }
 
     if (result) {
       return (
         <div>
-          <h2>Computer Vision Analysis:</h2>
-          {/* Muestra la imagen cargada */}
+          <hr />
+          <h1>Computer Vision Analysis</h1>
           {imageSrc && <img src={imageSrc} alt="Imagen cargada" style={{ maxWidth: '300px', height: 'auto' }} />}
-          {/* Muestra la URL */}
           <p><strong>URL:</strong> {url}</p>
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
@@ -56,9 +54,9 @@ function App() {
       <h1>Computer Vision</h1>
       <div>
         <label><b>Insert URL or type prompt:</b></label>
-        <br />
-        <input type="text" value={url} onChange={handleInputChange} />
-        <p>{/* Comentario opcional */}</p>
+        <p></p>
+        <input type="text" value={url} onChange={handleInputChange} className="large-input" />
+        <p></p>
         <button onClick={handleAnalyzeClick}>Analyze</button>
         &nbsp;
         <button onClick={handleGenerateClick}>Generate</button>
